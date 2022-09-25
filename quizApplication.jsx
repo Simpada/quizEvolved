@@ -57,7 +57,7 @@ const QUIZ = [
         fail: "That's a number!"
     }
 ]
-let quizRunning = false;
+
 let questionAnswerer = false;
 
 let questionNr = 0;
@@ -95,15 +95,13 @@ function CheckAnswer(answer) {
     if (!questionAnswerer) {
 
         let responseDiv = document.getElementById("response");
-        let message = "";
+        let message;
         if (answer === QUIZ[questionNr].correct) {
             message = QUIZ[questionNr].success;
+            score++;
         } else {
             message = QUIZ[questionNr].fail;
         }
-        responseDiv.innerHTML = message +
-            '<br/>' +
-            '<button id="next"> Next Question </button>';
 
         let answerButtons = document.getElementsByClassName("answer");
         for (let answerButton of answerButtons) {
@@ -113,28 +111,56 @@ function CheckAnswer(answer) {
         document.getElementById(rightButton).style.backgroundColor = "green";
 
         questionAnswerer = true;
+        questionNr++;
+
+        if (questionNr < QUIZ.length) {
+            responseDiv.innerHTML = message +
+                '<br/>' +
+                '<button id="next"> Next Question </button>';
+            document.getElementById("next").onclick = NextQuestion;
+        } else {
+            responseDiv.innerHTML = message +
+                '<br/>' +
+                '<button id="next"> See Scores </button>';
+            document.getElementById("next").onclick = GetResult;
+        }
     }
+}
+
+function NextQuestion() {
+
+    questionAnswerer = false;
+
+    let question = QUIZ[questionNr];
+
+    let answerButtons = document.getElementsByClassName("answer");
+    for (let answerButton of answerButtons) {
+        answerButton.style.backgroundColor = "";
+    }
+
+    document.getElementById("question").innerHTML = question.question;
+    document.getElementById("answer1").innerHTML = question.answer1;
+    document.getElementById("answer2").innerHTML = question.answer2;
+    document.getElementById("answer3").innerHTML = question.answer3;
+    document.getElementById("answer4").innerHTML = question.answer4;
+    document.getElementById("response").innerHTML = "";
+
 
 }
 
+function GetResult() {
+    document.getElementById("quizQuestion").innerHTML = "Your score is: " + score;
+}
 
 export function StartQuiz () {
 
-    if (!quizRunning) {
-        shuffle(QUIZ);
-        questionNr = 0;
-        quizRunning = true;
-    }
+    shuffle(QUIZ);
+    questionNr = 0;
+    score = 0;
+    questionAnswerer = false;
 
     return PrintQuestion();
 
-    // List all questions at once: Don't want this in end application, just for testing purposes,
-    /*
-    return <div>
-        <h1> The Grand Math Quiz </h1>
-        {QUIZ.map(quiz => <QuizCard key={quiz.question} quiz={quiz} />)}
-    </div>
-    */
 }
 
 function PrintQuestion() {
@@ -149,7 +175,7 @@ function PrintQuestion() {
 
 export function QuizApplication() {
     return <Routes>
-        <Route path={"/"} element={<StartQuiz/>}/>
+        <Route path={"/"} element={<StartQuiz first={true}/>}/>
         <Route path={".."} element={<Application/>}/>
         <Route path={"/add"} element={<h1> Here you can add questions </h1>}/>
         <Route path={"/scores"} element={<h1> Here you can see scores </h1>}/>
