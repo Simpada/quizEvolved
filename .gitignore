@@ -1,0 +1,6 @@
+# Project exclude paths
+/node_modules/
+/.parcel-cache/
+/dist/
+/package-lock.json
+/.idea
