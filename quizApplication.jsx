@@ -55,6 +55,26 @@ const QUIZ = [
         correct: 4,
         success: "nanananananana NaNNaN",
         fail: "That's a number!"
+    },
+    {
+        question: 'What is 2 + 2 - 2',
+        answer1: "4",
+        answer2: "2",
+        answer3: "0",
+        answer4: "-2",
+        correct: 2,
+        success: "At least you don't suck entirely",
+        fail: "You might as well give up at this point"
+    },
+    {
+        question: 'What is "2" + "2" - "2"',
+        answer1: "20",
+        answer2: "2",
+        answer3: "222",
+        answer4: "4",
+        correct: 1,
+        success: "Now you're thinking with Java Script",
+        fail: "Gotta think with Java Script man"
     }
 ]
 
@@ -144,8 +164,6 @@ function NextQuestion() {
     document.getElementById("answer3").innerHTML = question.answer3;
     document.getElementById("answer4").innerHTML = question.answer4;
     document.getElementById("response").innerHTML = "";
-
-
 }
 
 function GetResult() {
