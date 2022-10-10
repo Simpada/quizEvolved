@@ -1,0 +1,27 @@
+
+body{
+    background-color: black;
+    color: white;
+}
+
+.answer {
+    width: 10em;
+    height: 3em;
+    margin: .5em;
+    /*background-color: magenta;*/
+}
+
+#quizQuestion {
+    margin-left: 1em;
+}
+
+#response {
+    font-size: 2em;
+    margin-top: .5em;
+}
+
+#next {
+    width: 20em;
+    height: 5em;
+    margin: .5em;
+}

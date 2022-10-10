@@ -1,4 +1,4 @@
-import {BrowserRouter, Link, Route, Routes, useNavigate} from "react-router-dom";
+import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {QuizApplication} from "./quizApplication";
@@ -23,5 +23,7 @@ export function Application() {
         </Routes>
     </BrowserRouter>
 }
+
+
 
 ReactDOM.render(<Application/>, document.getElementById("app"))

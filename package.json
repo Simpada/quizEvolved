@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "buildAndStart": "npm run build && npm run start",
     "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm install && npm run build",
     "build:server": "cd server && npm install",
@@ -12,7 +13,7 @@
 
     "test": "jest",
 
-    "dev": "parcel index.html",
+    "dev": "parcel index2.html",
     "update": "npm install && cd server && npm install && cd ../client && npm install"
   },
   "keywords": [],
@@ -33,6 +34,7 @@
     "util": "^0.12.4"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "is-odd": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
