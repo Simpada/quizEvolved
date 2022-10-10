@@ -1,6 +1,5 @@
-import {Link, Route, Routes, useNavigate} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import * as React from "react";
-import {useEffect, useState} from "react";
 import {Application} from "./index";
 
 const QUIZ = [
@@ -34,7 +33,7 @@ const QUIZ = [
         answer4: "42",
         correct: 1,
         success: "That is 1",
-        fail: "That is True - True"
+        fail: "That is (Boolean) True - True"
     },
     {
         question: 'What is "4" + "2"',
